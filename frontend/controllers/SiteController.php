@@ -96,7 +96,6 @@ class SiteController extends Controller
                         'password' => $password,
                     ]);
                     $user->generateAuthKey();
-                    $user->generatePasswordResetToken();
                     $transaction = $user->getDb()->beginTransaction();
                     if ($user->save()) {
                         $auth = new \common\models\Auth([

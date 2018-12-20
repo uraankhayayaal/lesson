@@ -40,7 +40,7 @@ AppAsset::register($this);
         ['label' => Yii::t('app', 'Tasks'), 'url' => ['/lesson/task-back/index']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => '/site/login'];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
