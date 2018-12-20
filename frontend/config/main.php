@@ -15,6 +15,9 @@ return [
         'lesson' => [
             'class' => 'common\modules\lesson\Module',
         ],
+        'pdfjs' => [
+            'class' => '\yii2assets\pdfjs\Module',
+        ],
     ],
     'components' => [
         'request' => [

@@ -11,9 +11,30 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'as beforeRequest' => [
+        'class' => 'yii\filters\AccessControl',
+        'rules' => [
+            [
+                'allow' => true,
+                'actions' => ['login', 'error', 'auth', 'logout'],
+            ],
+            [
+                'allow' => true,
+                'roles' => ['dashboard'],
+            ],
+        ],
+        'denyCallback' => function () {
+            if(Yii::$app->user->isGuest)
+                return Yii::$app->response->redirect(['site/login']);
+            throw new \yii\web\HttpException(403 ,'Access forbidden');
+        },
+    ],
     'modules' => [
         'lesson' => [
             'class' => 'common\modules\lesson\Module',
+        ],
+        'pdfjs' => [
+            'class' => '\yii2assets\pdfjs\Module',
         ],
     ],
     'components' => [

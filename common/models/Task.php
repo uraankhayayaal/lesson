@@ -16,6 +16,9 @@ use Yii;
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
+ * @property int $user_id
+ *
+ * @property User $user
  */
 class Task extends \yii\db\ActiveRecord
 {
@@ -35,8 +38,9 @@ class Task extends \yii\db\ActiveRecord
         return [
             [['title', 'src', 'created_at', 'updated_at'], 'required'],
             [['src', 'description'], 'string'],
-            [['is_publish', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['is_publish', 'status', 'created_at', 'updated_at', 'user_id'], 'integer'],
             [['title', 'summary'], 'string', 'max' => 255],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -46,15 +50,24 @@ class Task extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'src' => 'Src',
-            'description' => 'Description',
-            'summary' => 'Summary',
-            'is_publish' => 'Is Publish',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'title' => Yii::t('app', 'Title'),
+            'src' => Yii::t('app', 'Src'),
+            'description' => Yii::t('app', 'Description'),
+            'summary' => Yii::t('app', 'Summary'),
+            'is_publish' => Yii::t('app', 'Is Publish'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'user_id' => Yii::t('app', 'User ID'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

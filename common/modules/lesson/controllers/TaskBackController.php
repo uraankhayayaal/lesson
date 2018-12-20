@@ -105,7 +105,9 @@ class TaskBackController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if(empty($model->user_id))
+            $model->delete();
 
         return $this->redirect(['index']);
     }
@@ -124,5 +126,21 @@ class TaskBackController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionSelect($id)
+    {
+        $model = $this->findModel($id);
+        $model->selectForSummary();
+
+        return $this->redirect(['index']);
+    }
+
+    public function actionUnselect($id)
+    {
+        $model = $this->findModel($id);
+        $model->unSelectForSummary();
+
+        return $this->redirect(['index']);
     }
 }

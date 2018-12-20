@@ -20,7 +20,9 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "yiisoft/yii2-authclient": "*",
         "twbs/bootstrap": "*",
-        "yiisoft/yii2-smarty": "^2.0"
+        "yiisoft/yii2-smarty": "^2.0",
+        "vova07/yii2-imperavi-widget": "*",
+        "yii2assets/yii2-pdfjs": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

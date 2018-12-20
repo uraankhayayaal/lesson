@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -26,30 +27,37 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'title',
-            [
-                'attribute' => 'src',
-                'format' => 'raw',
-                'value' => function($model){
-                    return '<div class="video">'.$model->src.'</div>';
-                }
-            ],
-            'description:ntext',
-            'summary',
-            [
-                'attribute' => 'status',
-                'format' => 'html',
-                'value' => function($model){
-                    return $model::getStatuses()[$model->status];
-                }
-            ],
-            'is_publish',
-            'created_at',
-            'updated_at',
-        ],
-    ]) ?>
+    <div class="row">
+        <div class="col-md-7">
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'title',
+                    [
+                        'attribute' => 'src',
+                        'format' => 'raw',
+                        'value' => function($model){
+                            return '<div class="video">'.$model->src.'</div>';
+                        }
+                    ],
+                    'description:ntext',
+                    'summary',
+                    [
+                        'attribute' => 'status',
+                        'format' => 'html',
+                        'value' => function($model){
+                            return $model::getStatuses()[$model->status];
+                        }
+                    ],
+                    'is_publish',
+                    'created_at',
+                    'updated_at',
+                ],
+            ]) ?>
+        </div>
+        <div class="col-md-5">
+            <?= $this->render('_pdf', ['model' => $model]); ?>
+        </div>
+    </div>
 
 </div>

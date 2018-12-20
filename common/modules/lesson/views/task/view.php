@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -13,32 +14,23 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="task-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="video">
+        <?= $model->src ?>
+    </div>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    <div class="media">
+        <div class="media-body">
+            <h1 class="mt-0"><?= Html::encode($this->title) ?></h1>
+            <p><?= $model->description ?></p>
+            <p><?= Yii::t('app', 'Published at:') ?> <?= Yii::$app->formatter->asDatetime($model->created_at) ?></p>
+        </div>
+    </div>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'title',
-            'src:ntext',
-            'description:ntext',
-            'summary',
-            'is_publish',
-            'status',
-            'created_at',
-            'updated_at',
-        ],
-    ]) ?>
+    <?php if(!empty($model->summary)) { ?>
+    <h3><?= Yii::t('app', 'Summary') ?></h3>
+    <?= \yii2assets\pdfjs\PdfJs::widget([
+        'url'=> Url::base().$model->summary
+    ]); ?>
+    <?php } ?>
 
 </div>

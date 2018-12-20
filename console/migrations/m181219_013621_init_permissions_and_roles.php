@@ -23,25 +23,26 @@ class m181219_013621_init_permissions_and_roles extends Migration
         $auth->add($admin);
         $auth->add($redactor);
         
-        // Создаем разрешения. Например, просмотр админки video и редактирование новости task
-        $video = $auth->createPermission('video');
-        $video->description = 'Управление видео материалами';
+        // Создаем разрешения. Например, просмотр админки dashboard и редактирование новости task
+        $dashboard = $auth->createPermission('dashboard');
+        $dashboard->description = 'Доступ в админку';
         
         $task = $auth->createPermission('task');
         $task->description = 'Управление заданиями';
         
         // Запишем эти разрешения в БД
-        $auth->add($video);
+        $auth->add($dashboard);
         $auth->add($task);
         
         // Роли «Редактор новостей» присваиваем разрешение «Редактирование новости»
-        $auth->addChild($redactor,$video);
+        $auth->addChild($redactor,$dashboard);
         $auth->addChild($redactor,$task);
 
         $auth->addChild($admin, $redactor);
 
         // Назначаем роль admin пользователю с ID 1
         $auth->assign($admin, 1);
+        $auth->assign($redactor, 2);
     }
 
     public function safeDown()
