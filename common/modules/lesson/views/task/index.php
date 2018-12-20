@@ -23,15 +23,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'itemView' => '_item',
                 'itemOptions' => ['class' => 'item col col-xs-12 col-sm-6 col-md-3 col-lg-4'],
                 'options' => ['tag' => false, 'class' => false, 'id' => false],
-                // 'itemOptions' => [
-                //     'tag' => false,
-                //     'class' => 'news-item',
-                // ],
-                'layout' => '<div class="row"><div class="col-xs-12">{summary}</div></div><div class="row">{items}</div><div class="row"><div class="col-xs-12">{pager}</div></div>',
-                // 'summaryOptions' => ['class' => 'summary grey-text'],
-                // 'emptyTextOptions' => ['class' => 'empty grey-text'],
+                'layout' => '<div class="row"><div class="col-xs-12">{summary}</div></div><div class="row">{items}</div><div class="row"><div class="col-xs-12"><nav aria-label="Page navigation">{pager}</nav></div></div>',
+                'pager' => [
+                    'firstPageLabel' => Yii::t('app', 'first'),
+                    'lastPageLabel' => Yii::t('app', 'last'),
+                    'prevPageLabel' => Yii::t('app', 'previous'),
+                    'nextPageLabel' => Yii::t('app', 'next'),
+                    'disabledListItemSubTagOptions' => ['tag' => 'a', 'href' => '#', 'class' => 'page-link'],
+                    'linkContainerOptions' => ['class' => 'page-item'],
+                    'linkOptions' => ['class' => 'page-link'],
+                ],
             ]) ?>
         </div>
     </div>
-
 </div>

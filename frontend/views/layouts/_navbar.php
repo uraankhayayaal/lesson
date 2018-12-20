@@ -18,12 +18,6 @@ use yii\helpers\Html;
       <li class="nav-item">
         <?= Html::a(Yii::t('app', 'Lessons'), ['/lesson/task/index'], ['class' => 'nav-link']) ?>
       </li>
-      <li class="nav-item">
-        <?= Html::a(Yii::t('app', 'About'), ['/site/about'], ['class' => 'nav-link']) ?>
-      </li>
-      <li class="nav-item">
-        <?= Html::a(Yii::t('app', 'Contact'), ['/site/contact'], ['class' => 'nav-link']) ?>
-      </li>
     <?php if (Yii::$app->user->isGuest) { ?>
       <li class="nav-item">
         <?= Html::a(Yii::t('app', 'Signup'), ['/site/signup'], ['class' => 'nav-link']) ?>
@@ -32,6 +26,9 @@ use yii\helpers\Html;
         <?= Html::a(Yii::t('app', 'Login'), ['/site/login'], ['class' => 'nav-link']) ?>
       </li>
     <?php } else { ?>
+      <li class="nav-item">
+        <?= Html::a(Yii::t('app', 'Administration'), '/admin', ['class' => 'nav-link']) ?>
+      </li>
       <li class="nav-item">
         <?= Html::a(Yii::t('app', 'Logout').' ('.Yii::$app->user->identity->username.')', ['/site/logout'], ['data' => ['method' => 'post'], 'class' => 'nav-link']) ?>
       </li>

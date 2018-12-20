@@ -35,9 +35,11 @@ return [
     'rememberMe' => 'Запомнить меня',
     'password' => 'Пароль',
     'Please fill out the following fields to signup' => 'Заполните поля что бы пройти регистрацию',
-    'Home' => 'Главная',
-    'Home' => 'Главная',
-    'Home' => 'Главная',
+    'Administration' => 'Админка',
+    'first' => 'Первая',
+    'last' => 'Последняя',
+    'previous' => 'Предыдущая',
+    'next' => 'Следующая',
 ];
 
 ?>
