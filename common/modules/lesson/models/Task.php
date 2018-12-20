@@ -66,11 +66,12 @@ class Task extends \common\models\Task
             'src' => Yii::t('app', 'Src (Youtube share code)'),
             'description' => Yii::t('app', 'Description'),
             'summary' => Yii::t('app', 'Summary'),
-            'is_publish' => Yii::t('app', 'Is Publish'),
+            'is_publish' => Yii::t('app', 'Is Public'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'user_id' => Yii::t('app', 'User ID'),
+            'user_id' => Yii::t('app', 'User'),
+            'file' => Yii::t('app', 'Select a file'),
         ];
     }
 

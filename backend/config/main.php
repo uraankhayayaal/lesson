@@ -8,6 +8,9 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'name' => 'Administration',
+    'language' => 'ru-RU',
+    'sourceLanguage' => 'en-US',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -73,6 +76,14 @@ return [
                 'login' => 'site/login',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/' => '<module>/<controller>/<action>',
+            ],
+        ],
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'forceTranslation' => true,
+                ],
             ],
         ],
     ],

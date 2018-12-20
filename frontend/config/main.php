@@ -8,8 +8,11 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'name' => 'Lesson summary app',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
+    'sourceLanguage' => 'en-US',
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'lesson' => [
@@ -72,6 +75,14 @@ return [
                 'tpl' => [
                     'class' => 'yii\smarty\ViewRenderer',
                     //'cachePath' => '@runtime/Smarty/cache',
+                ],
+            ],
+        ],
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'forceTranslation' => true,
                 ],
             ],
         ],

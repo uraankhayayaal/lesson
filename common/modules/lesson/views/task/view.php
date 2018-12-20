@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="media-body">
             <h1 class="mt-0"><?= Html::encode($this->title) ?></h1>
             <p><?= $model->description ?></p>
-            <p><?= Yii::t('app', 'Published at:') ?> <?= Yii::$app->formatter->asDatetime($model->created_at) ?></p>
+            <p><?= Yii::t('app', 'Published at') ?>: <?= Yii::$app->formatter->asDatetime($model->created_at) ?></p>
         </div>
     </div>
 
