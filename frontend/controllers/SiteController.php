@@ -84,13 +84,13 @@ class SiteController extends Controller
                 $user = $auth->user;
                 Yii::$app->user->login($user);
             } else { // signup
-                if (User::find()->where(['email' => $attributes['email']])->exists()) {
+                if (\common\models\User::find()->where(['email' => $attributes['email']])->exists()) {
                     Yii::$app->getSession()->setFlash('error', [
                         Yii::t('app', "User with the same email as in {client} account already exists but isn't linked to it. Login using email first to link it.", ['client' => $client->getTitle()]),
                     ]);
                 } else {
                     $password = Yii::$app->security->generateRandomString(6);
-                    $user = new User([
+                    $user = new \common\models\User([
                         'username' => $attributes['login'],
                         'email' => $attributes['email'],
                         'password' => $password,
@@ -99,7 +99,7 @@ class SiteController extends Controller
                     $user->generatePasswordResetToken();
                     $transaction = $user->getDb()->beginTransaction();
                     if ($user->save()) {
-                        $auth = new Auth([
+                        $auth = new \common\models\Auth([
                             'user_id' => $user->id,
                             'source' => $client->getId(),
                             'source_id' => (string)$attributes['id'],
@@ -117,7 +117,7 @@ class SiteController extends Controller
             }
         } else { // user already logged in
             if (!$auth) { // add auth provider
-                $auth = new Auth([
+                $auth = new \common\models\Auth([
                     'user_id' => Yii::$app->user->id,
                     'source' => $client->getId(),
                     'source_id' => $attributes['id'],
