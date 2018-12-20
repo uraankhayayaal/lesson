@@ -74,7 +74,7 @@ class SiteController extends Controller
         $attributes = $client->getUserAttributes();
 
         /** @var Auth $auth */
-        $auth = Auth::find()->where([
+        $auth = \commom\models\Auth::find()->where([
             'source' => $client->getId(),
             'source_id' => $attributes['id'],
         ])->one();
